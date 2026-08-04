@@ -4,31 +4,23 @@ public:
         int n =nums.size();
         sort(nums.begin(), nums.end());
 
-        vector<int> array;
+        unordered_set<int> mp;
+
+        vector<int> arr;
        int st = nums[0];
        int end = nums[n-1];
-
-
-
-        for(int i = st; i <= end;i++){
-            bool seen = false;
-            
-            for(int j =0; j < n;j++){
-                //ye cheack karna hain ki next element present hain ya nhi 
-
-              if(nums[j] == i){
-               seen = true;
-               break;
-              }
-            
-
-        }
-        if(seen == false){
-            array.push_back(i);
+        for(int i=0;i<n;i++){
+           mp.insert(nums[i]);
         }
 
+        for(int j = st; j<=end; j++){
+            if(!mp.contains(j)){
+                arr.push_back(j);
+            }
         }
 
-        return array;
+        
+
+        return arr;
     }
 };
