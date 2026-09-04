@@ -1,30 +1,34 @@
 class Solution {
 public:
     int firstStableIndex(vector<int>& nums, int k) {
+
         int n = nums.size();
 
-        for (int i = 0; i < n; i++) {
 
-            int maxa = INT_MIN;
-            int mini = INT_MAX;
+        // ek left part main min  ko calculate or right part main se max ko calculate karna hain
 
-            
-            for (int j = 0; j <= i; j++) {
-                maxa = max(maxa, nums[j]);
-            }
+        vector<int> right(n);
+        right[n-1] = nums[n-1];
 
-            
-            for (int j = i; j < n; j++) {
-                mini = min(mini, nums[j]);
-            }
+        for(int i = n-2; i>=0; i--){
+           right[i] = min(right[i+1],nums[i]);
+        }
 
-            int score = maxa - mini;
 
-            if (score <= k) {
-                return i;
+        int left =  nums[0]; 
+
+        for(int j=0; j<n; j++){
+            left = max(left,nums[j]);
+
+
+            int sc = left-right[j];
+
+            if(sc <= k){
+                return j;
             }
         }
 
-        return -1;
-    }
+       return -1;
+       
+           }
 };
