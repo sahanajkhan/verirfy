@@ -1,39 +1,42 @@
 class Solution {
 public:
     int countGoodRotations(vector<int>& nums) {
+
         int n = nums.size();
-        int half = n / 2;
-        int cnt = 0;
 
-        long long totalSum = 0;
+        int cnt =0;
 
-        for (int x : nums) {
-            totalSum += x;
+        vector<int>shahanaj = nums;
+        long long tsum =0;
+        int half = n/2;
+        long long firstsum =0;
+
+        for(int x: nums){
+             tsum += x;
         }
 
-       
-            long long firstSum = 0;
 
-            for (int i = 0; i < half; i++) {
-                firstSum += nums[i];
-            }
+        for(int i =0; i<half;i++){
+            firstsum += nums[i];
 
-            
+        }
 
-            for (int r = 0; r < n; r++) {
 
-            long long secondSum = totalSum - firstSum;
+        for(int j =0; j<n; j++){
 
-            if (firstSum > secondSum) {
+            long long secondsum = tsum - firstsum;
+
+
+            if(secondsum < firstsum){
                 cnt++;
             }
 
-            firstSum -= nums[r];
-            firstSum += nums[(r+half) % n];
-
-            
+            firstsum -= nums[j];
+            firstsum += nums[(j+half) % n];
         }
 
+
         return cnt;
+        
     }
 };
