@@ -13,7 +13,7 @@ public:
 
         long long sum =0;
 
-        while(even >0){
+        while(even > 0){
             long long n = pq.top();
             pq.pop();
             sum += n * n;
