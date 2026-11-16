@@ -1,16 +1,23 @@
 class Solution {
 public:
+   string sum(string next){
+    int add = 0;
+    for(int i =0; i<next.size(); i++){
+        add += next[i] - '0';
+    }
+    
+    return to_string(add);
+   }
     string digitSum(string s, int k) {
-        while (s.length() > k) {
-            string next = "";
-            for (int i = 0; i < s.length(); i += k) {
-                int sum = 0;
-                for (int j = i; j < s.length() && j < i + k; j++)
-                    sum += s[j] - '0';
-                next += to_string(sum);
-            }
-            s = next;
-        }
-        return s;
+        int n = s.length();
+     
+     if( n <= k) return s; // base case
+      string next = "";// resultant String  jo ki banti jab tu sare operation
+     for(int i = 0 ; i< n; i+=k){
+        string sub = s.substr(i , k);//substring
+        next+=sum(sub);
+        //cout<< sub<<endl;
+     }
+     return digitSum(next,k);//recursion call
     }
 };
