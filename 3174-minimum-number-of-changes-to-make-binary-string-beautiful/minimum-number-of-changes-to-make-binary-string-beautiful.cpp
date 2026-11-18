@@ -5,14 +5,14 @@ public:
 
         int n = s.size();
         int cnt  = 0;
-        string  next = "";
+       // string  next = "";
         
 
-        for(int i =0; i<n; i+=2){
+        for(int i =0; i<=n-2; i+=2){
 
-           next = s.substr(i,2); 
+           //next = s.substr(i,2); 
 
-           if(next[0] != next[1]){
+           if(s[i] != s[i+1]){
             cnt++;
            }
             
